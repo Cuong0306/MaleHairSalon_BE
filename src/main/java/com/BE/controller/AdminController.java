@@ -19,38 +19,38 @@ import java.util.UUID;
 public class AdminController {
 
         @Autowired
-        private AdminService adminService;
+        AdminService adminService;
 
         // Create
-    @PostMapping("/users")
-    public ResponseEntity<AdminResponse> createUser(@Valid @RequestBody AdminRequest adminRequest) {
+    @PostMapping("/create")
+    public ResponseEntity<AdminResponse> createAdmin(@Valid @RequestBody AdminRequest adminRequest) {
         AdminResponse response = adminService.createAdmin(adminRequest);
         return ResponseEntity.ok(response);
     }
 
         // Get all users
-    @GetMapping("/users")
-    public ResponseEntity<List<AdminResponse>> getAllUsers() {
-        List<AdminResponse> users = adminService.getAllAdmins();
-        return ResponseEntity.ok(users);
+    @GetMapping("/getAll")
+    public ResponseEntity<List<AdminResponse>> getAllAdmins() {
+        List<AdminResponse> admins = adminService.getAllAdmins();
+        return ResponseEntity.ok(admins);
     }
 
         // Get users by id
-    @GetMapping("/users/{id}")
-    public ResponseEntity<AdminResponse> getUserById(@PathVariable UUID id) {
-        AdminResponse user = adminService.getAdminById(id);
-        return ResponseEntity.ok(user);
+    @GetMapping("/getById")
+    public ResponseEntity<AdminResponse> getAdminById(@PathVariable UUID id) {
+        AdminResponse admin = adminService.getAdminById(id);
+        return ResponseEntity.ok(admin);
     }
 
         // Update a user
-    @PutMapping("/users/{id}")
-    public ResponseEntity<AdminResponse> updateUser(@PathVariable UUID id, @Valid @RequestBody AdminRequest adminRequest) {
-        AdminResponse updateUser = adminService.updateAdmin(id, adminRequest);
-        return ResponseEntity.ok(updateUser);
+    @PutMapping("/update")
+    public ResponseEntity<AdminResponse> updateAdmin(@PathVariable UUID id, @Valid @RequestBody AdminRequest adminRequest) {
+        AdminResponse updateAdmin = adminService.updateAdmin(id, adminRequest);
+        return ResponseEntity.ok(updateAdmin);
     }
         // Delete a user
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable UUID id) {
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> deleteAdmin(@PathVariable UUID id) {
         adminService.deleteAdmin(id);
         return ResponseEntity.noContent().build();
     }

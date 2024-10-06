@@ -43,7 +43,8 @@ public class   SecurityConfig  {
             "/api/register",
             "/api/login",
             "/api/forgot-password",
-            "/api/status"
+            "/api/status",
+            "/api/admin"
 
     };
 

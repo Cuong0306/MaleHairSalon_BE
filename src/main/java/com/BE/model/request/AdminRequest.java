@@ -20,8 +20,8 @@ public class AdminRequest {
     @NotBlank(message = "Username is required")
     private String username;
 
-    @NotBlank(message = "Passwork is required")
-    private String passwork;
+    @NotBlank(message = "Password is required")
+    private String password;
 
     private String role; // ADMIN, USER
 }

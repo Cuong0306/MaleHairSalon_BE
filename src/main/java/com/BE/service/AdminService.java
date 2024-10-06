@@ -1,9 +1,11 @@
 package com.BE.service;
 
 import com.BE.exception.exceptions.NotFoundException;
+import com.BE.model.entity.Admin;
 import com.BE.model.entity.User;
 import com.BE.model.request.AdminRequest;
 import com.BE.model.response.AdminResponse;
+import com.BE.repository.AdminRepository;
 import com.BE.repository.UserRepository;
 import com.BE.mapper.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,53 +20,55 @@ import java.util.stream.Collectors;
 public class AdminService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Autowired
-    private AdminMapper adminMapper;
+    AdminMapper adminMapper;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    PasswordEncoder passwordEncoder;
+    @Autowired
+    AdminRepository adminRepository;
 
-        // Create
+    // Create admin
     public AdminResponse createAdmin(AdminRequest adminRequest) {
-        User user = adminMapper.toUser(adminRequest);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User savedUser = userRepository.save(user);
-        return adminMapper.toAdminResponse(savedUser);
+        Admin admin = adminMapper.toAdmin(adminRequest);
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+        Admin savedAdmin = adminRepository.save(admin);
+        return adminMapper.toAdminResponse(savedAdmin);
     }
 
-        // Get all users
+        // Get all admin
     public List<AdminResponse> getAllAdmins() {
-        List<User> users = userRepository.findAll();
-        return users.stream().map(adminMapper::toAdminResponse)
+        List<Admin> adminList = adminRepository.findAll();
+        return adminList.stream().map(adminMapper::toAdminResponse)
                 .collect(Collectors.toList());
     }
 
-        // Get a user by ID
+        // Get a admin by ID
     public AdminResponse getAdminById(UUID id) {
-        User user = userRepository.findById(id)
+        Admin admin = adminRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User not found with ID: " + id));
-        return adminMapper.toAdminResponse(user);
+        return adminMapper.toAdminResponse(admin);
     }
 
-        // Update a user
+        // Update a admin
     public AdminResponse updateAdmin(UUID id, AdminRequest adminRequest) {
-        User existingUser = userRepository.findById(id)
+        Admin existingAdmin = adminRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User not found with ID: " + id));
 
-        adminMapper.updateUser(existingUser, adminRequest);
-        if (adminRequest.getPasswork() != null && !adminRequest.getPasswork().isEmpty()) {
-            existingUser.setPassword(passwordEncoder.encode(adminRequest.getPasswork()));
+        adminMapper.updateAdmin(existingAdmin, adminRequest);
+        if (adminRequest.getPassword() != null && !adminRequest.getPassword().isEmpty()) {
+            existingAdmin.setPassword(passwordEncoder.encode(adminRequest.getPassword()));
         }
-        User savedUser = userRepository.save(existingUser);
-        return adminMapper.toAdminResponse(savedUser);
+        Admin savedUser = adminRepository.save(existingAdmin);
+        return adminMapper.toAdminResponse(existingAdmin);
     }
 
-        //  Delete a user
+        //  Delete a admin
     public void deleteAdmin(UUID id) {
-        User user = userRepository.findById(id)
+        Admin admin = adminRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User not found with ID: " + id));
-        userRepository.delete(user);
+        adminRepository.delete(admin);
     }
 }

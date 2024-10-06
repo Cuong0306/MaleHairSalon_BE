@@ -1,6 +1,7 @@
 package com.BE.mapper;
 
 
+import com.BE.model.entity.Admin;
 import com.BE.model.entity.User;
 import com.BE.model.request.AdminRequest;
 import com.BE.model.response.AdminResponse;
@@ -11,15 +12,16 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring")
 public interface AdminMapper {
 
-    // Map AdminRequest to User
+    // Map AdminRequest to Admin
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "role", expression = "java(com.BE.enums.RoleEnum.valueOf(request.getRole().toUpperCase()))")
-    User toUser(AdminRequest request);
+    @Mapping(target = "password", source = "password")
+    Admin toAdmin(AdminRequest request);
 
-    //Map User to AdminResponse
-    AdminResponse toAdminResponse(User user);
+    //Map Admin to AdminResponse
+    AdminResponse toAdminResponse(Admin admin);
 
-    // Update existing User with AdminRequest
-    void updateUser(@MappingTarget User user, AdminRequest request);
+    // Update existing Admin with AdminRequest
+    void updateAdmin(@MappingTarget Admin admin, AdminRequest request);
 }
 
