@@ -61,7 +61,7 @@ public class AuthenticationService  {
            return userRepository.save(user);
        }catch (DataIntegrityViolationException e){
            System.out.println(e.getMessage());
-           throw new DataIntegrityViolationException("Duplicate UserName");
+           throw new DataIntegrityViolationException("Duplicate");
        }
     }
 //    @Cacheable()

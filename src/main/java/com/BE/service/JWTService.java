@@ -10,8 +10,13 @@ import com.nimbusds.jwt.JWTClaimsSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.spec.SecretKeySpec;
 import java.text.ParseException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -25,10 +30,6 @@ public class JWTService {
 
     @Value("${spring.duration}")
     private long DURATION;
-    
-
-    @Autowired
-    UserRepository userRepository;
 
 
 
@@ -55,6 +56,12 @@ public class JWTService {
             throw new RuntimeException(e);
         }
     }
+    @Bean
+    public JwtDecoder jwtDecoder(){
+        SecretKeySpec secretKeySpec = new SecretKeySpec(SECRET_KEY.getBytes(),"HS512");
+        return NimbusJwtDecoder.withSecretKey(secretKeySpec).macAlgorithm(MacAlgorithm.HS512).build();
+    }
+
 
 
     public String getRefreshClaim(String token) {
