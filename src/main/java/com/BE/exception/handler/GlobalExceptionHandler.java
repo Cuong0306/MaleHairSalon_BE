@@ -47,40 +47,40 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errors);
     }
 
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<Map<String, String>> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex, WebRequest request) {
-        Map<String, String> errors = new HashMap<>();
-
-        Throwable mostSpecificCause = ex.getMostSpecificCause();
-        String message = "Failed to parse JSON";
-
-        if (mostSpecificCause instanceof InvalidFormatException) {
-            InvalidFormatException ife = (InvalidFormatException) mostSpecificCause;
-            List<JsonMappingException.Reference> path = ife.getPath();
-            String fieldName = path.get(path.size() - 1).getFieldName();
-            Class<?> targetType = ife.getTargetType();
-            String value = ife.getValue().toString();
-
-            if (targetType.isEnum()) {
-                String validValues = EnumUtils.getValidEnumValues(targetType.asSubclass(Enum.class));
-                message = String.format("Field '%s' has invalid value '%s'. Expected one of: %s", fieldName, value, validValues);
-            } else {
-                message = String.format("Field '%s' has invalid value '%s'. Expected type: %s", fieldName, value, targetType.getSimpleName());
-            }
-        } else {
-            message = mostSpecificCause.getMessage();
-        }
-
-        errors.put("message", message);
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public ResponseEntity<Map<String, String>> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex, WebRequest request) {
-        Map<String, String> errors = new HashMap<>();
-        errors.put("message", ex.getMostSpecificCause().getMessage());
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-    }
+//    @ExceptionHandler(HttpMessageNotReadableException.class)
+//    public ResponseEntity<Map<String, String>> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex, WebRequest request) {
+//        Map<String, String> errors = new HashMap<>();
+//
+//        Throwable mostSpecificCause = ex.getMostSpecificCause();
+//        String message = "Failed to parse JSON";
+//
+//        if (mostSpecificCause instanceof InvalidFormatException) {
+//            InvalidFormatException ife = (InvalidFormatException) mostSpecificCause;
+//            List<JsonMappingException.Reference> path = ife.getPath();
+//            String fieldName = path.get(path.size() - 1).getFieldName();
+//            Class<?> targetType = ife.getTargetType();
+//            String value = ife.getValue().toString();
+//
+//            if (targetType.isEnum()) {
+//                String validValues = EnumUtils.getValidEnumValues(targetType.asSubclass(Enum.class));
+//                message = String.format("Field '%s' has invalid value '%s'. Expected one of: %s", fieldName, value, validValues);
+//            } else {
+//                message = String.format("Field '%s' has invalid value '%s'. Expected type: %s", fieldName, value, targetType.getSimpleName());
+//            }
+//        } else {
+//            message = mostSpecificCause.getMessage();
+//        }
+//
+//        errors.put("message", message);
+//        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+//    }
+//
+//    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+//    public ResponseEntity<Map<String, String>> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex, WebRequest request) {
+//        Map<String, String> errors = new HashMap<>();
+//        errors.put("message", ex.getMostSpecificCause().getMessage());
+//        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+//    }
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<Object> handleNotFoundException(NotFoundException exception) {
