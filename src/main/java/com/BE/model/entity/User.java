@@ -29,9 +29,6 @@ public class User implements UserDetails {
 
     String fullName;
 
-
-
-
     @Column(unique = true)
     String email;
 

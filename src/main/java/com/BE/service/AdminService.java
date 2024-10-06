@@ -2,11 +2,9 @@ package com.BE.service;
 
 import com.BE.exception.exceptions.NotFoundException;
 import com.BE.model.entity.Admin;
-import com.BE.model.entity.User;
 import com.BE.model.request.AdminRequest;
 import com.BE.model.response.AdminResponse;
 import com.BE.repository.AdminRepository;
-import com.BE.repository.UserRepository;
 import com.BE.mapper.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,13 +18,11 @@ import java.util.stream.Collectors;
 public class AdminService {
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
     AdminMapper adminMapper;
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
     @Autowired
     AdminRepository adminRepository;
 
@@ -45,17 +41,17 @@ public class AdminService {
                 .collect(Collectors.toList());
     }
 
-        // Get a admin by ID
+        // Get admin by ID
     public AdminResponse getAdminById(UUID id) {
         Admin admin = adminRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("User not found with ID: " + id));
+                .orElseThrow(() -> new NotFoundException("Admin not found with ID: " + id));
         return adminMapper.toAdminResponse(admin);
     }
 
         // Update a admin
     public AdminResponse updateAdmin(UUID id, AdminRequest adminRequest) {
         Admin existingAdmin = adminRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("User not found with ID: " + id));
+                .orElseThrow(() -> new NotFoundException("Admin not found with ID: " + id));
 
         adminMapper.updateAdmin(existingAdmin, adminRequest);
         if (adminRequest.getPassword() != null && !adminRequest.getPassword().isEmpty()) {
@@ -68,7 +64,7 @@ public class AdminService {
         //  Delete a admin
     public void deleteAdmin(UUID id) {
         Admin admin = adminRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("User not found with ID: " + id));
+                .orElseThrow(() -> new NotFoundException("Admin not found with ID: " + id));
         adminRepository.delete(admin);
     }
 }
