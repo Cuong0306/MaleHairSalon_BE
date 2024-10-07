@@ -2,7 +2,7 @@ package com.BE.config;
 
 import com.BE.exception.handler.AuthenticationHandler;
 import com.BE.filter.Filter;
-import com.BE.service.AuthenticationService;
+//import com.BE.service.AuthenticationService;
 import com.BE.service.JpaUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -44,8 +44,8 @@ public class   SecurityConfig  {
             "/api/login",
             "/api/forgot-password",
             "/api/status",
-            "/api/admin"
-
+            "/api/admin",
+            "/api/admin/create"
     };
 
     private final String[] PUBLIC_ENDPOINTS_METHOD = {

@@ -1,8 +1,11 @@
 package com.BE.controller;
 
 
+import com.BE.model.request.AdminLoginRequestDTO;
 import com.BE.model.request.AdminRequest;
 import com.BE.model.response.AdminResponse;
+import com.BE.model.response.AuthenticationResponse;
+import com.BE.model.request.StatusRequest;
 import com.BE.service.AdminService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
@@ -21,10 +24,14 @@ public class AdminController {
 
         @Autowired
         AdminService adminService;
-
+        // Login
+        @PostMapping("/login")
+        public ResponseEntity<AuthenticationResponse> loginAdmin(@RequestBody AdminLoginRequestDTO loginRequestDTO) {
+            AuthenticationResponse response = adminService.authenticateAdmin(loginRequestDTO);
+            return ResponseEntity.ok(response);
+        }
         // Create
     @PostMapping("/create")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AdminResponse> createAdmin(@Valid @RequestBody AdminRequest adminRequest) {
         AdminResponse response = adminService.createAdmin(adminRequest);
         return ResponseEntity.ok(response);
@@ -54,6 +61,20 @@ public class AdminController {
     @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteAdmin(@PathVariable UUID id) {
         adminService.deleteAdmin(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/update-status/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<AdminResponse> updateUserStatus(@PathVariable UUID id, @RequestBody StatusRequest statusRequest) {
+        AdminResponse response = adminService.updateUserStatus(id, statusRequest.getStatus());
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> deleteUser(@PathVariable UUID id) {
+        adminService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 }

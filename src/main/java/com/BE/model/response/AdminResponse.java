@@ -1,17 +1,18 @@
 package com.BE.model.response;
 
-
-import lombok.Getter;
-import lombok.Setter;
+import com.BE.enums.RoleEnum;
+import com.BE.enums.StatusEnum;
+import lombok.Data;
 
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 public class AdminResponse {
     private UUID id;
-    private String fullName;
-    private String email;
     private String username;
-    private String role;
+    private String email;
+    private RoleEnum role;
+    private StatusEnum status;
+    private Boolean isDelete;
+    // Remove the authorities field
 }

@@ -20,50 +20,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Admin implements UserDetails {
-
-    @Id
-    @UuidGenerator
-    UUID id;
-
-    String fullName;
-
-    @Column(unique = true)
-    String email;
-
-    @Column(unique = true)
-    String username;
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    String password;
-
-    @Enumerated(value = EnumType.STRING)
-    RoleEnum role;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(this.role.toString()));
-        return authorities;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+public class Admin extends User {
+    // Admin-specific fields, if any
 }
