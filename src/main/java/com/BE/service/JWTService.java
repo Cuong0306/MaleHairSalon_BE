@@ -80,9 +80,28 @@ public class JWTService {
         }
     }
 
+    public String verifyToken (String token) {
+            try {
+                // Parse the token
+                JWSObject jwsObject = JWSObject.parse(token);
 
+                // Verify the token's signature
+                MACVerifier verifier = new MACVerifier(SECRET_KEY.getBytes());
+                if (!jwsObject.verify(verifier)) {
+                    throw new RuntimeException("Invalid token signature");
+                }
 
+                // Extract claims
+                JWTClaimsSet claimsSet = JWTClaimsSet.parse(jwsObject.getPayload().toJSONObject());
+
+                // Retrieve the email from the claims
+                return claimsSet.getSubject(); // Assuming the email is stored in the subject
+            } catch (ParseException | JOSEException e) {
+                throw new RuntimeException("Error parsing token", e);
+            }
+        }
     }
+
 
 
 
