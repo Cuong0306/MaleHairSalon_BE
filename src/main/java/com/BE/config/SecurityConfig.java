@@ -47,7 +47,8 @@ public class SecurityConfig  {
             "/api/status",
             "/api/services/**", //@@@@@@
             "/api/services/udate",
-            "api/service/delete"
+            "/api/service/delete",
+            "/api/services/getall"
 
 
     };

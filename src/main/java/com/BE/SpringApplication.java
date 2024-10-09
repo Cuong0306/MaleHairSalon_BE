@@ -13,11 +13,7 @@ import org.springframework.cache.annotation.EnableCaching;
 @OpenAPIDefinition(info = @Info(title = "API", version = "2.0", description = "Information"))
 @SecurityScheme(name = "api", scheme = "bearer", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER)
 public class SpringApplication {
-
 	public static void main(String[] args) {
 		org.springframework.boot.SpringApplication.run(SpringApplication.class,args);
 	}
-
-
-
 }
