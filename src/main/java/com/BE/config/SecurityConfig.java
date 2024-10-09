@@ -3,6 +3,7 @@ package com.BE.config;
 import com.BE.exception.handler.AuthenticationHandler;
 import com.BE.filter.Filter;
 import com.BE.service.AuthenticationService;
+import com.BE.service.JWTService;
 import com.BE.service.JpaUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -43,12 +44,20 @@ public class SecurityConfig  {
             "/api/register",
             "/api/login",
             "/api/forgot-password",
-            "/api/status"
+            "/api/status",
+            "/api/services/**", //@@@@@@
+            "/api/services/udate",
+            "/api/service/delete",
+            "/api/services/getall"
+
 
     };
 
     private final String[] PUBLIC_ENDPOINTS_METHOD = {
     };
+
+    @Autowired
+    JWTService jwtService;
 
     @Autowired
     AuthenticationHandler authenticationHandler;
@@ -73,7 +82,7 @@ public class SecurityConfig  {
                         .anyRequest().authenticated())
 
                 .oauth2ResourceServer(oauth2 -> oauth2
-                        .jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder())
+                        .jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtService.jwtDecoder())
                                 .jwtAuthenticationConverter(jwtAuthenticationConverter()))
                         .authenticationEntryPoint(authenticationHandler))
 
@@ -86,11 +95,7 @@ public class SecurityConfig  {
         return httpSecurity.build();
     }
 
-    @Bean
-    JwtDecoder jwtDecoder(){
-        SecretKeySpec secretKeySpec = new SecretKeySpec(SECRET_KEY.getBytes(),"HS512");
-        return NimbusJwtDecoder.withSecretKey(secretKeySpec).macAlgorithm(MacAlgorithm.HS512).build();
-    }
+
 
     @Bean
     JwtAuthenticationConverter jwtAuthenticationConverter() {

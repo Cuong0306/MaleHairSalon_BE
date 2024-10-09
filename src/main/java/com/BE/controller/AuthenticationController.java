@@ -21,11 +21,6 @@ public class AuthenticationController {
     @Autowired
     AuthenticationService authenticationService;
 
-    @Autowired
-    JWTService jwtService;
-
-
-
     @PostMapping("/register")
     public ResponseEntity<User> register(@Valid @RequestBody AuthenticationRequest user){
         return ResponseEntity.ok(authenticationService.register(user));
@@ -67,6 +62,8 @@ public class AuthenticationController {
     public ResponseEntity status(@Valid @RequestBody StatusRequest statusRequest) {
         return ResponseEntity.ok(statusRequest.getStatus());
     }
+
+
 
 
 
