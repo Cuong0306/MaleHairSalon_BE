@@ -115,25 +115,20 @@ public class AuthenticationService  {
         EmailDetail emailDetail = new EmailDetail();
         emailDetail.setRecipient(user.getEmail());
         emailDetail.setSubject("Reset password for account " + user.getEmail() + "!");
-        emailDetail.setMsgBody("aaa");
+        emailDetail.setMsgBody("Please click the button to reset your password.");
         emailDetail.setButtonValue("Reset Password");
         emailDetail.setFullName(user.getFullName());
         emailDetail.setLink("http://localhost:5173?token=" + jwtService.generateToken(user));
-
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                emailService.sendMailTemplate(emailDetail);
-            }
-
-        };
-        new Thread(r).start();
+        emailService.sendMailTemplate(emailDetail);
 
     }
 
     public User resetPassword(ResetPasswordRequest resetPasswordRequest) {
+        String newPassword = resetPasswordRequest.getPassword();
         User user = accountUtils.getCurrentUser();
-        user.setPassword(passwordEncoder.encode(resetPasswordRequest.getPassword()));
+
+        // Update the password
+        user.setPassword(passwordEncoder.encode(newPassword));
         return userRepository.save(user);
     }
 
