@@ -36,20 +36,20 @@ public class SalonController {
 
     //update
     @PutMapping("/udate/{id}")
-    public ResponseEntity update(@PathVariable int id,@Valid @RequestBody SalonRequest salon) {
+    public ResponseEntity update(@PathVariable long id,@Valid @RequestBody SalonRequest salon) {
         Salon updateSalon = salonService.update(id, salon);
         return ResponseEntity.ok(updateSalon);
     }
 
     //Delete
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity delete(@PathVariable int id) {
+    public ResponseEntity delete(@PathVariable long id) {
         Salon deleteSalon = salonService.delete(id);
         return ResponseEntity.ok(deleteSalon);
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity getSalonById(@PathVariable int id) {
+    public ResponseEntity getSalonById(@PathVariable long id) {
         Salon getSalonId = salonService.getSalonById(id);
         return ResponseEntity.ok(getSalonId);
     }

@@ -9,24 +9,19 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+@Entity
 @Getter
 @Setter
-@Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Salon {
+public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    String SalonContact;
+    String CategoryName;
 
-    String SalonLocation;
-
-    String OpeningHours;
-
-    String ServicesOffered;
-
-    int Capacity;
+    String CategoryDescription;
 
     boolean isDelete = false;
 
