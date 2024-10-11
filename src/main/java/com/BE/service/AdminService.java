@@ -24,7 +24,7 @@ public class AdminService {
         admin.setAdminName(adminRequest.getAdminName());
         admin.setEmail(adminRequest.getEmail());
         admin.setUsername(adminRequest.getUsername());
-        admin.setPassword(passwordEncoder.encode(adminRequest.getPassword()));
+        admin.setPassword(adminRequest.getPassword());
         admin.setRole(RoleEnum.ADMIN); // Assign ADMIN role
         return adminRepository.save(admin);
     }
