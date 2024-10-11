@@ -13,5 +13,6 @@ import lombok.experimental.FieldDefaults;
 public class AdminRequest {
     String adminName;
     String email;
+    String username;
     String password;
 }
