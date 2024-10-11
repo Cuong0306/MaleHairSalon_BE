@@ -10,16 +10,10 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class SalonRequest {
+public class CategoryRequest {
 
 
-    String SalonContact;
+    String CategoryName;
 
-    String SalonLocation;
-
-    String OpeningHours;
-
-    String ServicesOffered;
-
-    int Capacity;
+    String CategoryDescription;
 }

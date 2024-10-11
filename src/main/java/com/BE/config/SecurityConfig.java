@@ -46,10 +46,10 @@ public class SecurityConfig  {
             "/api/forgot-password",
             "/api/status",
             "/api/services/**", //@@@@@@
-            "/api/services/udate",
-            "/api/service/delete",
-            "/api/services/getall",
-            "/api/salon/**"
+            "/api/salon/**",
+            "/api/stylist/**",
+            "/api/Category/**"
+
 
 
     };

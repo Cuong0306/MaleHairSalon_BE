@@ -35,7 +35,7 @@ public class ServiceService {
     }
 
     //update
-    public ServiceEntity update(int id, ServiceRequest service) {
+    public ServiceEntity update(long id, ServiceRequest service) {
         //b1: Tim ra service can update
         ServiceEntity oldService = getServiceEntityById(id);
 
@@ -50,25 +50,26 @@ public class ServiceService {
 
     }
     //Delete
-    public ServiceEntity delete(int id) {
+    public ServiceEntity delete(long id) {
         ServiceEntity oldService = getServiceEntityById(id);
         oldService.setDelete(true);
         return serviceRepository.save(oldService);
     }
 
+    public  ServiceEntity getServiceId(long id) {
+        ServiceEntity getServiceId = getServiceEntityById(id);
 
-    public ServiceEntity getServiceEntityById(int id) {
-        ServiceEntity oldService = serviceRepository.findByServiceID(id);
+        return serviceRepository.save(getServiceId);
+    }
+    //ham dung chung
+    public ServiceEntity getServiceEntityById(long id) {
+        ServiceEntity oldService = serviceRepository.findById(id);
         if(oldService == null) {
             throw new NotFoundException("Service not found");
         }
         return oldService;
     }
-    public  ServiceEntity getServiceById(int id) {
-        ServiceEntity getServiceId = getServiceEntityById(id);
 
-        return serviceRepository.save(getServiceId);
-    }
     /*public ServiceEntity getServiceByName(String name) {
         ServiceEntity serviceName = getServiceByName(name);
         if(serviceName == null) {

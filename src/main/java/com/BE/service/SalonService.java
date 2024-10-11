@@ -3,6 +3,7 @@ package com.BE.service;
 import com.BE.exception.exceptions.NotFoundException;
 import com.BE.model.entity.Salon;
 import com.BE.model.entity.ServiceEntity;
+import com.BE.model.entity.Stylist;
 import com.BE.model.request.SalonRequest;
 import com.BE.model.request.ServiceRequest;
 import com.BE.repository.SalonRepository;
@@ -32,9 +33,9 @@ public class SalonService {
         return Salons;
     }
 
-    public Salon update(int id, SalonRequest salon) {
+    public Salon update(long id, SalonRequest salon) {
         //b1: Tim ra service can update
-        Salon oldSalon = getSalonById(id);
+        Salon oldSalon = getSalonId(id);
 
         //co ton tai
 
@@ -48,23 +49,22 @@ public class SalonService {
 
     }
     //Delete
-    public Salon delete(int id) {
+    public Salon delete(long id) {
         Salon oldSalon = getSalonById(id);
         oldSalon.setDelete(true);
         return salonRepository.save(oldSalon);
     }
 
+    public Salon getSalonId(long id) {
+        Salon getSalonId = getSalonById(id);
+        return salonRepository.save(getSalonId);
+    }
 
-    public Salon getSalonId(int id) {
-        Salon oldSalon = salonRepository.findSalonBySalonID(id);
+    public Salon getSalonById(long id) {
+        Salon oldSalon = salonRepository.findById(id);
         if(oldSalon == null) {
             throw new NotFoundException("Salon not found");
         }
         return oldSalon;
-    }
-    public  Salon getSalonById(int id) {
-        Salon getSalonId = getSalonId(id);
-
-        return salonRepository.save(getSalonId);
     }
 }

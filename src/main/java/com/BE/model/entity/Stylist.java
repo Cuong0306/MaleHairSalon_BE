@@ -16,15 +16,22 @@ import lombok.experimental.FieldDefaults;
 public class Stylist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int stylistID;
+    long id;
 
     String stylistName;
 
     String stylistExp;
 
-    String Specialization;
+    String Certifications;
 
-    int ServiceID;
+    float Rating;
 
+    //Days/hours the stylist is available
+    String Availability;
 
+    String info;
+
+    String location;
+
+    boolean isDelete = false;
 }

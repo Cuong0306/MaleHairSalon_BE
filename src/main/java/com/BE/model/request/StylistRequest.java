@@ -10,16 +10,21 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class SalonRequest {
+public class StylistRequest {
 
 
-    String SalonContact;
+    String stylistName;
 
-    String SalonLocation;
+    String stylistExp;
 
-    String OpeningHours;
+    String Certifications;
 
-    String ServicesOffered;
+    float Rating;
 
-    int Capacity;
+    //Days/hours the stylist is available
+    String Availability;
+
+    String info;
+
+    String location;
 }
