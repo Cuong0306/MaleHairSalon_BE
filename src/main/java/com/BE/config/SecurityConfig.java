@@ -52,7 +52,8 @@ public class SecurityConfig  {
             "/api/staff/**",
             "/api/manager/**",
             "/api/admins/**",
-            "/api/comments/**"
+            "/api/comments/**",
+            "/api/members/**"
 
     };
 
