@@ -48,8 +48,8 @@ public class SecurityConfig  {
             "/api/services/**", //@@@@@@
             "/api/salon/**",
             "/api/stylist/**",
-            "/api/Category/**"
-
+            "/api/Category/**",
+            "/api/manager/**"
 
 
     };
