@@ -49,8 +49,8 @@ public class SecurityConfig  {
             "/api/salon/**",
             "/api/stylist/**",
             "/api/Category/**",
+            "/api/manager/**",
             "/api/admins/**"
-
 
     };
 
