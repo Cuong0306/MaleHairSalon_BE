@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class StylistController {
     StylistService stylistService;
 
     // create stylist
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity create(@Valid @RequestBody StylistRequest stylist) {
         Stylist newStylist = stylistService.create(stylist);
@@ -37,6 +39,7 @@ public class StylistController {
     }
 
     //update
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/udate/{id}")
     public ResponseEntity update(@PathVariable long id,@Valid @RequestBody StylistRequest stylist) {
         Stylist updateStylist = stylistService.update(id, stylist);
@@ -45,6 +48,7 @@ public class StylistController {
 
     //Delete
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity delete(@PathVariable long id) {
         Stylist deleteStylist = stylistService.delete(id);
         return ResponseEntity.ok(deleteStylist);
