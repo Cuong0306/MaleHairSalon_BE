@@ -1,9 +1,7 @@
 package com.BE.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.BE.enums.RoleEnum;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,4 +32,7 @@ public class Stylist {
     String location;
 
     boolean isDelete = false;
+
+    @Enumerated(value = EnumType.STRING)
+    RoleEnum role;
 }

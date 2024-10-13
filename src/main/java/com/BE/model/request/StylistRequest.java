@@ -27,4 +27,7 @@ public class StylistRequest {
     String info;
 
     String location;
+
+    String username;
+    String password;
 }

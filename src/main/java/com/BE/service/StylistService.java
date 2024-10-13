@@ -1,5 +1,6 @@
 package com.BE.service;
 
+import com.BE.enums.RoleEnum;
 import com.BE.exception.exceptions.NotFoundException;
 import com.BE.model.entity.ServiceEntity;
 import com.BE.model.entity.Stylist;
@@ -29,7 +30,7 @@ public class StylistService {
         stylist1.setAvailability(stylist.getAvailability());
         stylist1.setInfo(stylist.getInfo());
         stylist1.setLocation(stylist.getLocation());
-
+        stylist1.setRole(RoleEnum.STYLIST);
 
         Stylist newStylist = stylistRepository.save(stylist1);
         return newStylist;
@@ -55,7 +56,7 @@ public class StylistService {
         oldStylist.setAvailability(stylist.getAvailability());
         oldStylist.setInfo(stylist.getInfo());
         oldStylist.setLocation(stylist.getLocation());
-
+        oldStylist.setRole(oldStylist.getRole());
 
         return stylistRepository.save(oldStylist);
 
