@@ -47,6 +47,9 @@ public class User implements UserDetails {
     @Enumerated(value = EnumType.STRING)
     RoleEnum role;
 
+    String phone;
+    String avatar;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
