@@ -57,6 +57,7 @@ public class AuthenticationService  {
         User user = userMapper.toUser(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(RoleEnum.USER);
+        user.setPhone(request.getPhone());
        try {
            return userRepository.save(user);
        }catch (DataIntegrityViolationException e){

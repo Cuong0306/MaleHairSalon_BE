@@ -21,6 +21,7 @@ public class AuthenticationResponse {
      String fullName;
      String username;
      String email;
+     String phone;
      @Enumerated(value = EnumType.STRING)
      RoleEnum role;
      String token;

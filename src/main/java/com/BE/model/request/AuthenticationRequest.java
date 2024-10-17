@@ -5,6 +5,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,9 @@ public class AuthenticationRequest {
     @NotBlank(message = "Email cannot be blank")
     String email;
 
+    @NotBlank(message = "Phone is required")
+    @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
+    String phone;
 
     @Size(min = 5, message = "Username must be at least 5 characters long")
     @NotBlank(message = "Username cannot be blank")
