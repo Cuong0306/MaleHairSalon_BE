@@ -38,6 +38,9 @@ public class User implements UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     String password;
 
+    @Column(unique = true)
+    String phonenumber;
+
     @Enumerated(value = EnumType.STRING)
     RoleEnum role;
 

@@ -1,6 +1,5 @@
 package com.BE.model.request;
 
-import com.BE.enums.RoleEnum;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,21 +10,11 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class StylistRequest {
-
-
-    String stylistName;
-
-    String stylistExp;
-
-    String Certifications;
-
-    float Rating;
-
-    //Days/hours the stylist is available
-    String Availability;
-
-    String info;
-
-    String location;
+public class CommentRequest {
+    String content;
+    int rating;
+    long userId;
+    Long serviceId; // Optional
+    Long stylistId; // Optional
+    Long salonId; // Optional
 }

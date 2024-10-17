@@ -22,10 +22,9 @@ public class ServiceService {
         serviceEntity.setServicePrice(service.getServicePrice());
         serviceEntity.setServiceDescription(service.getServiceDescription());
         serviceEntity.setServiceType(service.getServiceType());
+        serviceEntity.setImage(service.getImage()); // Lưu trữ ảnh dưới dạng chuỗi
 
-
-        ServiceEntity newService = serviceRepository.save(serviceEntity);
-        return newService;
+        return serviceRepository.save(serviceEntity);
     }
 
     //read all service
@@ -36,18 +35,15 @@ public class ServiceService {
 
     //update
     public ServiceEntity update(long id, ServiceRequest service) {
-        //b1: Tim ra service can update
         ServiceEntity oldService = getServiceEntityById(id);
-
-        //co ton tai
 
         oldService.setServiceName(service.getServiceName());
         oldService.setServiceDescription(service.getServiceDescription());
         oldService.setServicePrice(service.getServicePrice());
         oldService.setServiceType(service.getServiceType());
+        oldService.setImage(service.getImage()); // Cập nhật ảnh
 
         return serviceRepository.save(oldService);
-
     }
     //Delete
     public ServiceEntity delete(long id) {
@@ -70,12 +66,12 @@ public class ServiceService {
         return oldService;
     }
 
-    /*public ServiceEntity getServiceByName(String name) {
-        ServiceEntity serviceName = getServiceByName(name);
-        if(serviceName == null) {
+    /*public ServiceEntity getServiceName(String name) {
+        ServiceEntity oldService = serviceRepository.findByName(name);
+        if(oldService == null) {
             throw new NotFoundException("Service not found");
         }
-        return serviceName;
+        return oldService;
     }*/
 
 }

@@ -5,6 +5,7 @@ import com.BE.model.entity.ServiceEntity;
 import com.BE.model.request.SalonRequest;
 import com.BE.model.request.ServiceRequest;
 import com.BE.service.SalonService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/salon")
 @CrossOrigin("*") //cors: cho phep fe moi dc truy cap
+@SecurityRequirement(name = "api")
 public class SalonController {
     @Autowired
     SalonService salonService;

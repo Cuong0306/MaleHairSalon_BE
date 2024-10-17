@@ -1,6 +1,6 @@
 package com.BE.model.request;
 
-import jakarta.persistence.Column;
+import com.google.type.Decimal;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,22 +8,19 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
-
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ServiceRequest {
-    String serviceName;
+public class BookingRequest {
+    LocalDate BookingDate;
 
-    String serviceDescription;
+    List<Long> ServicesID;
 
-    BigDecimal servicePrice;
+    List<Long> StylistId;  // Thêm trường để lưu ID của stylist
 
-    String serviceType;
-
-    String image;
-
-
+    List<Long> SalonID;
 }

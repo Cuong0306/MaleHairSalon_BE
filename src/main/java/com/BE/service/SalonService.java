@@ -22,7 +22,7 @@ public class SalonService {
         salon1.setSalonLocation(salon.getSalonLocation());
         salon1.setOpeningHours(salon.getOpeningHours());
         salon1.setServicesOffered(salon.getServicesOffered());
-        salon1.setCapacity(salon.getCapacity());
+
 
         Salon newSalon = salonRepository.save(salon1);
         return salon1;
@@ -43,7 +43,7 @@ public class SalonService {
         oldSalon.setSalonContact(salon.getSalonContact());
         oldSalon.setSalonLocation(salon.getSalonLocation());
         oldSalon.setOpeningHours(salon.getOpeningHours());
-        oldSalon.setCapacity(salon.getCapacity());
+
 
         return salonRepository.save(oldSalon);
 

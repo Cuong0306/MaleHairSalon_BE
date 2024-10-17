@@ -10,5 +10,5 @@ public interface ServiceRepository extends JpaRepository<ServiceEntity, Long> {
     // dat ten function theo dinh dang JPA cung cap
     //findServiceById(long id)
     ServiceEntity findById(long id);
-    /*ServiceEntity findByServiceName(String serviceName);*/
+   // ServiceEntity findByName(String name);
 }

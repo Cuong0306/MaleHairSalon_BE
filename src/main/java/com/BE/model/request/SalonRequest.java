@@ -21,5 +21,5 @@ public class SalonRequest {
 
     String ServicesOffered;
 
-    int Capacity;
+
 }

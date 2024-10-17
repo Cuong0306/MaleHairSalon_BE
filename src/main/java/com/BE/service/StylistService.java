@@ -29,7 +29,7 @@ public class StylistService {
         stylist1.setAvailability(stylist.getAvailability());
         stylist1.setInfo(stylist.getInfo());
         stylist1.setLocation(stylist.getLocation());
-
+//        stylist1.getRole();
 
         Stylist newStylist = stylistRepository.save(stylist1);
         return newStylist;

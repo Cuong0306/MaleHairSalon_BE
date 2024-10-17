@@ -5,6 +5,7 @@ import com.BE.model.request.ServiceRequest;
 import com.BE.repository.ServiceRepository;
 import com.BE.service.ServiceService;
 import com.google.errorprone.annotations.InlineMeValidationDisabled;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/services")
 @CrossOrigin("*") //cors: cho phep fe moi dc truy cap
+@SecurityRequirement(name = "api")
 public class ServiceController {
 
 
@@ -60,9 +62,9 @@ public class ServiceController {
         return ResponseEntity.ok(getServiceId);
     }
     /*@GetMapping("/get/{id}")
-    public ResponseEntity  findByServiceName(@PathVariable int id) {
-        ServiceEntity getServiceId = serviceService.getServiceByName(toString());
-        return ResponseEntity.ok(getServiceId);
+    public ResponseEntity  getServiceName(@PathVariable String name) {
+        ServiceEntity getServiceName = serviceService.getServiceName(toString());
+        return ResponseEntity.ok(getServiceName);
 
     }*/
 

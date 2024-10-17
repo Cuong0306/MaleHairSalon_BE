@@ -45,12 +45,17 @@ public class SecurityConfig  {
             "/api/login",
             "/api/forgot-password",
             "/api/status",
-            "/api/services/**", //@@@@@@
             "/api/salon/**",
+            "/api/stylist/create",
             "/api/stylist/**",
-            "/api/Category/**"
-
-
+            "/api/Category/**",
+            "/api/Option/**",
+            "/api/slot/**",
+            "/api/Category/**",
+            "/api/admins/**",
+            "/api/comments/**",
+            "/api/booking/**",
+            "/api/service/**"
 
     };
 

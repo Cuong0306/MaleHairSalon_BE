@@ -1,31 +1,21 @@
 package com.BE.model.request;
 
-import com.BE.enums.RoleEnum;
+import com.BE.enums.StatusEnum;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class StylistRequest {
+public class SlotRequest {
+    String startTime;
 
+    String endTime;
 
-    String stylistName;
-
-    String stylistExp;
-
-    String Certifications;
-
-    float Rating;
-
-    //Days/hours the stylist is available
-    String Availability;
-
-    String info;
-
-    String location;
+    StatusEnum Status;
 }
