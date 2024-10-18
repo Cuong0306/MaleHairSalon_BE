@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +17,10 @@ public class StaffRequest {
     String email;
     String username;
     String password;
+    String experience;
+    String certifications;
+    float rating;
+    String availability;
+    BigDecimal salary;
+    BigDecimal commissionRate;
 }

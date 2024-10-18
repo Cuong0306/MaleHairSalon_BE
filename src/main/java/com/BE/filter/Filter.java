@@ -14,7 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class Filter extends OncePerRequestFilter {
+public class
+
+Filter extends OncePerRequestFilter {
 
     private List<String> PUBLIC_ENDPOINTS;
     private List<String> PUBLIC_ENDPOINTS_METHOD;
