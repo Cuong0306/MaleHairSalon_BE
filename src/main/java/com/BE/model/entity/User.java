@@ -1,8 +1,6 @@
 package com.BE.model.entity;
 
-
 import com.BE.enums.RoleEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -16,8 +14,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.math.BigDecimal;
 import java.util.*;
-
 
 @Entity
 @Getter
@@ -49,6 +47,21 @@ public class User implements UserDetails {
 
     String phone;
     String avatar;
+    int loyaltyPoints;
+    String experience;
+    String certifications;
+    float rating;
+    String availability;
+    BigDecimal salary;
+    BigDecimal commissionRate;
+
+    @ManyToOne
+    @JoinColumn(name = "salon_id")
+    Salon salon;
+
+    @ManyToOne
+    @JoinColumn(name = "created_by")
+    User createdBy;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -61,7 +74,6 @@ public class User implements UserDetails {
     public boolean isAccountNonExpired() {
         return true;
     }
-
 
     @Override
     public boolean isAccountNonLocked() {
