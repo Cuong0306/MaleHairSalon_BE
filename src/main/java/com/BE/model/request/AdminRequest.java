@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AdminRequest {
-    String adminName;
+    String fullName;
     String email;
     String username;
     String password;

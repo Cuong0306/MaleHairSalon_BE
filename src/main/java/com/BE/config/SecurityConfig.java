@@ -53,7 +53,8 @@ public class SecurityConfig  {
             "/api/manager/**",
             "/api/admins/**",
             "/api/comments/**",
-            "/api/members/**"
+            "/api/members/**",
+            "/api/admin/**",
 
     };
 
