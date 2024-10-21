@@ -16,12 +16,13 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    String adminName;
+    String fullName;
     String email;
-    String password;
     String username;
-    boolean isDelete = false;
+    String password;
 
     @Enumerated(value = EnumType.STRING)
-    RoleEnum role;
+    RoleEnum role = RoleEnum.ADMIN; // Default role set to ADMIN
+
+    boolean isDelete = false;
 }
