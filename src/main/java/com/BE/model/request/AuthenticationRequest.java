@@ -33,4 +33,10 @@ public class AuthenticationRequest {
     @NotBlank(message = "Password cannot be blank")
     @Size(min = 5, message = "Password must be at least 5 characters long.")
     String password;
+
+    @NotBlank(message = "Phone number cannot be blank")
+    @Size(min = 10, max = 10, message = "Phone number is invalid (must be 10 digits).")
+    String phonenumber;
+
+
 }
